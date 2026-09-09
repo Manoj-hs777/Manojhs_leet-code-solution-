@@ -1,0 +1,28 @@
+class Solution {
+    public int divide(int a, int b) {
+
+        if (a == Integer.MIN_VALUE && b == -1)
+            return Integer.MAX_VALUE;
+
+        boolean neg = (a < 0) != (b < 0);
+        int ans = 0;
+
+        if (a > 0) a = -a;
+        if (b > 0) b = -b;
+
+        while (a <= b) {
+            int temp = b;
+            int count = 1;
+
+            while (temp >= -1073741824 && a <= temp + temp) {
+                temp += temp;
+                count += count;
+            }
+
+            a -= temp;
+            ans += count;
+        }
+
+        return neg ? -ans : ans;
+    }
+}
